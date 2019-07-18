@@ -50108,7 +50108,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-// Vue.component('show', require('./components/people/PeopleShow.vue').default);
 
 Vue.component('people', __webpack_require__(/*! ./components/people/People.vue */ "./resources/js/components/people/People.vue")["default"]);
 /**
