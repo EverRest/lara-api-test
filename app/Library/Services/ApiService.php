@@ -6,6 +6,7 @@ namespace App\Library\Services;
 
 use App\Contracts\ApiServiceInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\App;
 
 /**
@@ -38,7 +39,7 @@ final class ApiService implements ApiServiceInterface
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAll(string $entity = 'people', int $page = 1)
+    public function getAll(string $entity = 'people', int $page = 1): Response
     {
         $res = $this->makeRequest( $this->requestUrl . $entity . '/?page=' . $page);
         return $res;
@@ -50,7 +51,7 @@ final class ApiService implements ApiServiceInterface
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(string $entity = 'people', int $id = 0)
+    public function get(string $entity = 'people', int $id = 0): Response
     {
         $res = $this->makeRequest($this->requestUrl . $entity . '/' . $id);
         return $res;
@@ -62,7 +63,7 @@ final class ApiService implements ApiServiceInterface
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function makeRequest( string $request = '', string $type = "get")
+    private function makeRequest( string $request = '', string $type = "get"): Response
     {
         return $this->client->request(strtoupper($type), $request);
     }

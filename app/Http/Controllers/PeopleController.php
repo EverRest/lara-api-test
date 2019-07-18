@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\ApiServiceInterface;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PeopleController extends Controller
@@ -26,7 +28,7 @@ class PeopleController extends Controller
      * @param int $page
      * @return mixed
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): Response
     {
         return $this->peopleService->getAll('people', $page);
     }
@@ -55,7 +57,7 @@ class PeopleController extends Controller
      * @param $id
      * @return mixed
      */
-    public function show($id)
+    public function show($id): Response
     {
         return $this->peopleService->get('people',$id);
     }
