@@ -7,11 +7,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-// import VueRouter from 'vue-router';
-//
-// window.Vue.use(VueRouter);
-// import People from './components/people/People.vue';
-// import PeopleShow from './components/people/PeopleShow.vue';
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,13 +16,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-// Vue.component('show', require('./components/people/PeopleShow.vue').default);
 Vue.component('people', require('./components/people/People.vue').default);
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,22 +24,4 @@ Vue.component('people', require('./components/people/People.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-// const routes = [
-//     {
-//         path: '/api/people/',
-//         components: {
-//             peopleIndex: People
-//         }
-//     },
-//     {path: '/api/people/:id', component: PeopleShow, name: 'peopleShow'},
-// ];
-
-
-// const router = new VueRouter({ routes });
-//
 const app = new Vue().$mount('#app');
-
-// const app = new Vue({
-//     el: '#app',
-// });

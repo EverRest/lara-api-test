@@ -20,7 +20,7 @@
             <span>
                 {{man.name}}
             </span>
-            <a href="#" class="" @click="viewDetails"><i class="fas fa-angle-double-down"></i></a>
+            <a href="#" class="" @click="viewDetails"><i :class="[seen ? 'fas fa-angle-double-down' : 'fas fa-angle-double-up']"></i></a>
         </p>
         <div class="panel" v-if="seen">
             <hr>
@@ -59,7 +59,7 @@
         },
         data() {
             return {
-                details: {},
+                details: false,
                 seen: false
             }
         },
@@ -69,8 +69,7 @@
                 // Here must be Obj.id but i should take from url
                 axios.get('/api/people/' + this.getId(app.man.url))
                     .then(function (res) {
-                        console.log(res);
-                        app.details = res.data;
+                        if(!app.details) app.details = res.data;
                         app.seen = !app.seen;
                     }).
                 catch(function (res) {
@@ -83,7 +82,6 @@
             }
         },
         mounted() {
-            // console.log(this.man);
         }
     }
 </script>

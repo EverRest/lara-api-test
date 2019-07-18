@@ -1844,7 +1844,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      details: {},
+      details: false,
       seen: false
     };
   },
@@ -1853,8 +1853,7 @@ __webpack_require__.r(__webpack_exports__);
       var app = this; // Here must be Obj.id but i should take from url
 
       axios.get('/api/people/' + this.getId(app.man.url)).then(function (res) {
-        console.log(res);
-        app.details = res.data;
+        if (!app.details) app.details = res.data;
         app.seen = !app.seen;
       })["catch"](function (res) {
         console.log(res);
@@ -1865,8 +1864,7 @@ __webpack_require__.r(__webpack_exports__);
       return parseInt(str.match(pattern)[1]);
     }
   },
-  mounted: function mounted() {// console.log(this.man);
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -37903,7 +37901,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("a", { attrs: { href: "#" }, on: { click: _vm.viewDetails } }, [
-        _c("i", { staticClass: "fas fa-angle-double-down" })
+        _c("i", {
+          class: [
+            _vm.seen ? "fas fa-angle-double-down" : "fas fa-angle-double-up"
+          ]
+        })
       ])
     ]),
     _vm._v(" "),
@@ -50098,12 +50100,7 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // import VueRouter from 'vue-router';
-//
-// window.Vue.use(VueRouter);
-// import People from './components/people/People.vue';
-// import PeopleShow from './components/people/PeopleShow.vue';
-
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50111,32 +50108,16 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 // Vue.component('show', require('./components/people/PeopleShow.vue').default);
 
-Vue.component('people', __webpack_require__(/*! ./components/people/People.vue */ "./resources/js/components/people/People.vue")["default"]); // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('people', __webpack_require__(/*! ./components/people/People.vue */ "./resources/js/components/people/People.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-// const routes = [
-//     {
-//         path: '/api/people/',
-//         components: {
-//             peopleIndex: People
-//         }
-//     },
-//     {path: '/api/people/:id', component: PeopleShow, name: 'peopleShow'},
-// ];
-// const router = new VueRouter({ routes });
-//
 
-var app = new Vue().$mount('#app'); // const app = new Vue({
-//     el: '#app',
-// });
+var app = new Vue().$mount('#app');
 
 /***/ }),
 
